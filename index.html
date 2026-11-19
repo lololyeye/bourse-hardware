@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Bourse du Hardware</title>
+<meta name="description" content="Suivi des prix des composants PC, plan d'achat et alertes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f0b90b'/%3E%3Cpath d='M6 22l6-7 5 4 9-11' stroke='%230b0e11' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#" aria-label="Bourse du Hardware">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M6 22l6-7 5 4 9-11"/></svg>
+      <span><b>Bourse du Hardware</b><small id="today"></small></span>
+    </a>
+    <div class="top-right">
+      <span class="pill" id="mood"></span>
+      <button class="btn primary" id="btnReleve"><span aria-hidden="true">＋</span> Relevé</button>
+    </div>
+  </div>
+  <div class="ticker" id="ticker" aria-label="Cours"></div>
+  <nav class="tabs" id="tabs">
+    <button data-tab="market" class="on">Marché</button>
+    <button data-tab="plan">Plan &amp; budget</button>
+    <button data-tab="alerts">Alertes <span id="badge" class="badge" hidden>0</span></button>
+    <button data-tab="timing">Quand acheter</button>
+    <button data-tab="configs">Configs</button>
+    <button data-tab="data">Partage</button>
+  </nav>
+</header>
+
+<main>
+  <!-- MARCHÉ -->
+  <section id="market" class="tab on">
+    <div class="kpis" id="kpis"></div>
+
+    <div class="sec-head"><h2>À faire maintenant</h2></div>
+    <ol class="todo" id="todo"></ol>
+
+    <div class="sec-head">
+      <h2>Watchlist</h2>
+      <span class="muted small" id="lastReleve"></span>
+    </div>
+    <div class="watch" id="cards" role="table"></div>
+    <p class="foot">Prix de départ : estimations de mi-novembre 2026, sources dans Partage. Le site ne lit pas les boutiques à ta place : fais un <b>relevé</b> une ou deux fois par semaine, il calcule tendances, signaux et alertes.</p>
+  </section>
+
+  <!-- PLAN -->
+  <section id="plan" class="tab">
+    <div class="sec-head"><h2>Budget du mois</h2></div>
+    <div class="panel">
+      <div class="form">
+        <label>Salaire net<input type="number" id="b_net" step="10" inputmode="numeric"></label>
+        <label>Charges fixes<small>loyer, abonnements, assurance</small><input type="number" id="b_fixed" step="10" inputmode="numeric"></label>
+        <label>Vie courante<small>courses, transport, sorties</small><input type="number" id="b_life" step="10" inputmode="numeric"></label>
+        <label>Épargne actuelle<input type="number" id="b_saved" step="10" inputmode="numeric"></label>
+        <label>Budget PC / mois<input type="number" id="b_pc" step="10" inputmode="numeric"></label>
+      </div>
+      <div id="budgetOut"></div>
+    </div>
+
+    <div class="sec-head"><h2>Ordre d'achat</h2></div>
+    <div class="toggles">
+      <label class="switch"><input type="checkbox" id="gpuFirst"><span></span>Carte graphique d'abord <small>plus gros gain de FPS, le PC marche entre chaque étape</small></label>
+      <label class="switch"><input type="checkbox" id="resale"><span></span>Compter la revente de l'ancien matériel</label>
+    </div>
+    <div id="planOut"></div>
+  </section>
+
+  <!-- ALERTES -->
+  <section id="alerts" class="tab">
+    <div class="sec-head"><h2>Alertes</h2>
+      <div class="row"><button class="btn" id="btnNotif">🔔 Notifications</button><button class="btn ghost" id="btnClear">Tout lu</button></div>
+    </div>
+    <div class="panel">
+      <div class="form">
+        <label>Baisse importante dès (%)<input type="number" id="s_drop" min="1" max="50"></label>
+        <label>Hausse importante dès (%)<input type="number" id="s_rise" min="1" max="50"></label>
+      </div>
+      <p class="muted small">Prix cibles : dans la Watchlist, ouvre une ligne puis « Régler ». Les alertes se déclenchent à chaque relevé. Les rappels (relevé en retard, soldes qui approchent) au chargement du site. Les notifications ne partent que si le site est ouvert.</p>
+    </div>
+    <div id="feed"></div>
+  </section>
+
+  <!-- TIMING -->
+  <section id="timing" class="tab">
+    <div class="sec-head"><h2>Calendrier des promos</h2></div>
+    <div id="events" class="timeline"></div>
+    <div class="sec-head"><h2>Acheter sans se faire avoir</h2></div>
+    <div class="tips">
+      <div class="tip"><b>Neuf</b><p>LDLC, Materiel.net, TopAchat, Amazon (vendu <i>et</i> expédié par Amazon). Garantie 2 ans, retour 14 jours.</p></div>
+      <div class="tip"><b>Prix trop beau</b><p>25 % sous les autres boutiques = arnaque, vendeur tiers douteux ou version 8 Go.</p></div>
+      <div class="tip"><b>Fausses promos</b><p>Idealo et Dealabs montrent l'historique. Un « -30 % » sur un prix gonflé la veille n'est pas une promo.</p></div>
+      <div class="tip"><b>Occasion</b><p>Leboncoin en main propre, pièce testée 10 min sous charge. Jamais de virement à un inconnu. Back Market pour la garantie.</p></div>
+      <div class="tip"><b>Carte graphique</b><p>Vise 16 Go pour durer. Évite les 8 Go à ce prix.</p></div>
+      <div class="tip"><b>Contexte 2026</b><p>RAM et GPU montent à cause de la pénurie de mémoire liée à l'IA. Une pièce dont tu as besoin ne sera pas forcément moins chère dans 3 mois.</p></div>
+    </div>
+  </section>
+
+  <!-- CONFIGS -->
+  <section id="configs" class="tab">
+    <div class="sec-head"><h2>Configs intéressantes</h2></div>
+    <div id="configList" class="cfgs"></div>
+  </section>
+
+  <!-- PARTAGE -->
+  <section id="data" class="tab">
+    <div class="sec-head"><h2>Partager avec ton pote</h2></div>
+    <div class="panel">
+      <p>Chacun garde ses données dans son navigateur. Pour mettre vos relevés en commun :</p>
+      <div class="row">
+        <button class="btn primary" id="btnLink">🔗 Copier un lien de partage</button>
+        <button class="btn" id="btnExport">⬇ Exporter .json</button>
+        <label class="btn">⬆ Importer<input type="file" id="fileImport" accept=".json" hidden></label>
+        <button class="btn danger" id="btnReset">Réinitialiser</button>
+      </div>
+      <p class="muted small">Le lien contient les relevés et les prix cibles, jamais ton budget. Ton pote l'ouvre, accepte, et les relevés sont fusionnés.</p>
+    </div>
+    <div class="sec-head"><h2>Sources des prix de départ</h2></div>
+    <ul class="src">
+      <li><a href="https://www.cowcotland.com/news/103217/prix-des-cartes-graphiques-la-rtx-5090-perd-2840-euros-mais-les-autres-gpu-continuent-de-grimper.html" target="_blank" rel="noopener">Cowcotland — prix des cartes graphiques, 14 nov. 2026</a></li>
+      <li><a href="https://www.touslesprix.com/comparer/fiche13412763.html" target="_blank" rel="noopener">Touslesprix — Ryzen 7 5800X3D</a></li>
+      <li><a href="https://next.ink/266331/memoire-stockage-gpu-nos-releves-de-prix-avant-le-black-friday-toujours-plus-haut/" target="_blank" rel="noopener">Next.ink — relevés mémoire, stockage, GPU avant le Black Friday</a></li>
+      <li><a href="https://tech-insider.org/prix-ram-2026-penurie-gaming/" target="_blank" rel="noopener">Tech-insider — prix de la RAM 2026</a></li>
+      <li class="muted">Marqués « estim. » (5700X3D, DDR4, DDR5, AIO, alim, boîtier) : pas de source fiable, à corriger au premier relevé.</li>
+    </ul>
+  </section>
+</main>
+
+<dialog id="dlgReleve"><form method="dialog" id="formReleve">
+  <header class="dlg-h"><h3>Relevé de la semaine</h3><button class="x" value="cancel" formnovalidate aria-label="Fermer">✕</button></header>
+  <p class="muted small">Le meilleur prix <b>fiable</b> vu aujourd'hui. Laisse vide si tu n'as pas regardé.</p>
+  <div id="releveFields"></div>
+  <div class="row end"><button class="btn ghost" value="cancel" formnovalidate>Annuler</button><button class="btn primary" value="ok">Enregistrer</button></div>
+</form></dialog>
+
+<dialog id="dlgProd"><form method="dialog">
+  <header class="dlg-h"><h3 id="pTitle"></h3><button class="x" value="ok" aria-label="Fermer">✕</button></header>
+  <div id="pBody"></div>
+</form></dialog>
+
+<div id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>

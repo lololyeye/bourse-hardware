@@ -2,7 +2,7 @@
 import { DAY, uid } from "./format.js";
 
 export const CURRENCIES = ["EUR", "USD", "GBP", "CHF"];
-export const METHODS = ["seed", "manual", "import", "api"];
+export const METHODS = ["seed", "manual", "import", "api", "feed"];
 export const STATUSES = ["estimate", "verified", "unverified"];
 export const MAX_PRICE = 50000;
 const MIN_TS = Date.UTC(2000, 0, 1);

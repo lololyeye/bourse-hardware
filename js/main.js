@@ -6,6 +6,8 @@ import { html, raw, esc, $, $$, on, toast, popover, closePopovers } from "./ui/d
 import { icon } from "./ui/icons.js";
 import { notify } from "./ui/notify.js";
 import { VIEWS } from "./views/index.js";
+import { CONFIG } from "./config.js";
+import { feedToAdd } from "./core/feed.js";
 
 const root = document.documentElement;
 
@@ -194,6 +196,19 @@ function reminders() {
   store.runAlertsNow(); // time-based alerts (stale data)
 }
 
+/* ---------------- Published price feed ---------------- */
+async function loadFeed() {
+  if (!CONFIG.priceFeedUrl) return;
+  try {
+    const res = await fetch(CONFIG.priceFeedUrl, { cache: "no-cache" });
+    if (!res.ok) return;
+    const { add, seen } = feedToAdd(await res.json(), store.state);
+    if (!seen.length) return;
+    store.commit("observations", s => { s.observations.push(...add); s.meta.feedSeen = [...(s.meta.feedSeen || []), ...seen].slice(-3000); });
+    toast(`${add.length} nouveau${add.length > 1 ? "x" : ""} prix relevé${add.length > 1 ? "s" : ""} ajouté${add.length > 1 ? "s" : ""} à l'historique`, { tone: "ok", action: { label: "Voir", run: () => go("history") } });
+  } catch { /* offline or feed unavailable: the app works without it */ }
+}
+
 /* ---------------- Boot ---------------- */
 function boot() {
   const r = store.init();
@@ -231,7 +246,7 @@ function boot() {
 
   notify.registerSW();
   notify.onMessage(m => { if (m?.type === "navigate" && m.route) location.hash = m.route; });
-  setTimeout(reminders, 600);
+  setTimeout(() => loadFeed().finally(reminders), 400);
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { reminders(); renderShell(); } });
   window.__bh = { store, version: "2.0.0" }; // debugging / e2e
 }

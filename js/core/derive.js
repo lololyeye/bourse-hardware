@@ -11,7 +11,8 @@ export function derive(state, rev, now = Date.now()) {
   const s = state.settings, cur = s.currency;
   const obsBy = new Map();
   for (const o of state.observations) { if (!obsBy.has(o.productId)) obsBy.set(o.productId, []); obsBy.get(o.productId).push(o); }
-  for (const list of obsBy.values()) list.sort((a, b) => a.ts - b.ts);
+  // A starting estimate only stands in until the first real price: after that it is kept in the history but ignored.
+  for (const [pid, list] of obsBy) { list.sort((a, b) => a.ts - b.ts); if (list.some(isVerified)) obsBy.set(pid, list.filter(isVerified)); }
   const watchBy = new Map(state.watchlist.map(w => [w.productId, w]));
   const priceNow = pid => { const l = obsBy.get(pid); return l?.length ? l[l.length - 1].price : null; };
   const plan = schedule(state.budget, priceNow, now);
@@ -38,7 +39,7 @@ export function derive(state, rev, now = Date.now()) {
     });
   }
   const rows = [...byId.values()];
-  const index = marketIndex(state.products, state.observations.filter(o => o.currency === cur), now);
+  const index = marketIndex(state.products, [...obsBy.values()].flat().filter(o => o.currency === cur), now);
   const summary = marketSummary(rows, c => catById(c).label, { staleDays: s.staleDays });
   const lastObservationAt = state.observations.reduce((m, o) => (o.method !== "seed" && o.ts > m ? o.ts : m), 0) || null;
   const value = { byId, rows, index, summary, plan, priceNow, lastObservationAt, now };

@@ -21,7 +21,7 @@ export const sparkOf = (x, opts) => sparkline(x.obs.map(o => o.price), opts);
 export const productHref = id => `#/product/${encodeURIComponent(id)}`;
 export const catIcon = cat => icon(catById(cat).icon, { size: 16 });
 export const statusTag = s => html`<span class="tag ${s === "estimate" ? "est" : s === "verified" ? "ok" : ""}">${{ estimate: "ESTIM.", verified: "VÉRIFIÉ", unverified: "NON VÉRIF." }[s] || s}</span>`;
-export const methodLabel = m => ({ seed: "Prix de départ", manual: "Saisie manuelle", import: "Import", api: "Flux automatique" }[m] || m);
+export const methodLabel = m => ({ seed: "Prix de départ", manual: "Saisie manuelle", import: "Import", api: "Flux automatique", feed: "Relevé publié" }[m] || m);
 
 export function emptyState(text, ic = "info", action = null) {
   return html`<div class="empty">${icon(ic, { size: 22 })}<p>${text}</p>${action ? html`<p style="margin-top:10px">${action}</p>` : ""}</div>`;

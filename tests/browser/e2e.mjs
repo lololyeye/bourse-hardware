@@ -95,6 +95,8 @@ async function run(name) {
     await b.goto(BASE + "#/overview", 2000);
     const per = await b.eval(`const s = window.__bh.store.state; const nav = performance.getEntriesByType("navigation")[0]; return { o: s.observations.filter(o => o.productId === "gpu-test").length, dcl: Math.round(nav.domContentLoadedEventEnd), load: Math.round(nav.loadEventEnd) };`);
     check(name, "data persists after reload", per.o === 1);
+    const feed = await b.eval(`const s = window.__bh.store.state; return { n: s.observations.filter(o => o.method === "feed").length, rx: window.__bh.store.derived.byId.get("r7_5800x3d").st.last.status };`);
+    check(name, "published price feed applied once, real price replaces the estimate", feed.n >= 9 && feed.rx !== "estimate", JSON.stringify(feed));
     check(name, "page timing", true, `DOMContentLoaded ${per.dcl} ms, load ${per.load} ms (local server)`);
 
     const errs = b.errors.filter(e => !ignorable(e));

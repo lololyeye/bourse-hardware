@@ -1,0 +1,23 @@
+{
+  "format": "bourse-hardware",
+  "kind": "feed",
+  "version": 1,
+  "updatedAt": "2026-11-19T23:15:00+01:00",
+  "about": "Prix neufs relevés à la main sur des pages publiques (comparateurs et boutiques), avec lien et date. Aucun prix n'est estimé ici. status 'unverified' = lu sur un comparateur, à confirmer chez le marchand avant d'acheter. 'ts' = date du relevé indiquée par la page, sinon date de lecture.",
+  "observations": [
+    { "id": "feed-20261119-rx9060xt", "productId": "rx9060xt", "price": 669.99, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://labonneconfig.fr/cartes-graphiques/rx-9060-xt", "ts": "2026-11-19T16:00:00+01:00", "method": "feed", "status": "unverified", "note": "ASUS DUAL RX 9060 XT 16 Go, hors livraison (LaBonneConfig)" },
+
+    { "id": "feed-20261104-rtx5060ti", "productId": "rtx5060ti", "price": 851, "currency": "EUR", "retailer": "Alternate", "sourceUrl": "https://pausehardware.com/prix-rtx-50-france-releve-novembre-2026/", "ts": "2026-11-04T17:00:00+01:00", "method": "feed", "status": "unverified", "note": "Alternate, modèle non précisé (PauseHardware)" },
+    { "id": "feed-20261119-rtx5060ti", "productId": "rtx5060ti", "price": 799, "currency": "EUR", "retailer": "GrosBill", "sourceUrl": "https://labonneconfig.fr/guides/meilleure-rtx-5060-ti", "ts": "2026-11-19T16:00:00+01:00", "method": "feed", "status": "unverified", "note": "GrosBill, ASUS DUAL RTX 5060 Ti OC 16G (LaBonneConfig)" },
+
+    { "id": "feed-20261112-r7_5800x3d", "productId": "r7_5800x3d", "price": 335, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://www.xyrotek.com/blog/upgrade-am4-5700x3d-ou-5800x3d", "ts": "2026-11-12T08:00:00+01:00", "method": "feed", "status": "unverified", "note": "Édition 10e anniversaire, neuf (Xyrotek)" },
+    { "id": "feed-20261119-r7_5800x3d", "productId": "r7_5800x3d", "price": 335, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://www.123comparer.fr/processeurs/gy5ugcbtgo3ugcjago5un.html", "ts": "2026-11-19T12:00:00+01:00", "method": "feed", "status": "unverified", "note": "Édition 10e anniversaire, vendu par Amazon ; Galaxus 335 €, Cdiscount 335,23 € (123comparer)" },
+
+    { "id": "feed-20261105-ddr5_32", "productId": "ddr5_32", "price": 467.99, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://www.xyrotek.com/blog/ddr4-ou-ddr5-black-friday-cout-plateforme", "ts": "2026-11-05T23:00:00+01:00", "method": "feed", "status": "unverified", "note": "Corsair Vengeance RGB DDR5 6000 2×16 Go (Xyrotek)" },
+
+    { "id": "feed-20261119-aio240", "productId": "aio240", "price": 43.92, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://ledenicheur.fr/s/aio-240/", "ts": "2026-11-19T23:00:00+01:00", "method": "feed", "status": "unverified", "note": "Thermalright Frozen Infinity 240, AM4/AM5 ; date de lecture (Ledenicheur)" },
+    { "id": "feed-20261110-aio240", "productId": "aio240", "price": 59.99, "currency": "EUR", "retailer": "TopAchat", "sourceUrl": "https://www.topachat.com/p/top/meilleur-watercooling-aio-2026", "ts": "2026-11-10T12:00:00+01:00", "method": "feed", "status": "unverified", "note": "TopAchat, Cooler Master MasterLiquid Core Nex 240 ARGB, AM4" },
+
+    { "id": "feed-20261119-o11mini", "productId": "o11mini", "price": 74.95, "currency": "EUR", "retailer": "materiel", "sourceUrl": "https://ledenicheur.fr/product.php?p=5668959", "ts": "2026-11-19T23:00:00+01:00", "method": "feed", "status": "unverified", "note": "Version Snow, en stock ; date de lecture (Ledenicheur)" }
+  ]
+}

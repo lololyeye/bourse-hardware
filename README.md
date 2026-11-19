@@ -7,7 +7,12 @@ Site : https://lololyeye.github.io/bourse-hardware/
 ## Principes
 
 - **Aucun prix inventé.** Les prix de départ sont marqués « estimation » et n'entrent pas dans les signaux. Un signal demande au moins 3 relevés réels.
-- **Pas de scraping.** Le site ne lit pas les boutiques depuis le navigateur. Les prix viennent de tes relevés (saisie, relevé groupé, import CSV/JSON). Les liens « Comparer les offres » ouvrent des recherches.
+- **Pas de scraping.** Le site ne lit pas les boutiques depuis le navigateur. Les prix viennent :
+  - de tes relevés (saisie, relevé groupé, import CSV/JSON) ;
+  - des relevés publiés dans [`data/prices.json`](data/prices.json) : des prix neufs lus à la main sur des pages publiques, chacun avec son lien et sa date. L'app les ajoute une seule fois à l'historique et ne les remet pas si tu les supprimes.
+
+  Les liens « Comparer les offres » ouvrent des recherches.
+- **Une estimation s'efface devant un vrai prix.** Dès qu'un produit a un relevé réel, son estimation de départ reste dans l'historique mais n'est plus utilisée.
 - **Tes données restent chez toi** (`localStorage`). Le partage passe par un lien qui contient une copie compressée, sans serveur. Le budget n'y figure que si tu le coches.
 - **Une mise à jour n'efface jamais tes données.** Les données v1 restent en place et une copie datée est créée. Les données illisibles sont conservées telles quelles. Une réinitialisation enregistre une copie avant. Tout est visible dans Réglages → Stockage.
 

@@ -5,6 +5,6 @@ export const CONFIG = {
   pushEndpoint: null,
   /** VAPID *public* key (base64url). The private key lives only on the server. */
   vapidPublicKey: null,
-  /** Optional authorised price feed (JSON: [{productId, price, currency, retailer, sourceUrl, ts}]). */
-  priceFeedUrl: null,
+  /** Published price feed: sourced, dated prices added to everyone's history once (see data/prices.json). */
+  priceFeedUrl: "./data/prices.json",
 };

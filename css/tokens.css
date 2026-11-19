@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Bourse du Hardware — design tokens
+   Identity: "graphite terminal". Near-black layered surfaces, warm brass accent,
+   restrained green (price down = good for a buyer) and red (price up).
+   ========================================================================== */
+:root {
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* surfaces (dark, default) */
+  --bg-0: #07080a;   /* app background */
+  --bg-1: #0c0e11;   /* sidebar, panels */
+  --bg-2: #111419;   /* raised panels, inputs */
+  --bg-3: #171b21;   /* hover, active rows */
+  --bg-4: #1e232a;   /* pressed, chips */
+  --line: #1c2027;
+  --line-strong: #2a3039;
+  --grid: #14171c;
+  --text-1: #eceef2;
+  --text-2: #b4b9c2;
+  --text-3: #7f8692;
+  --text-4: #555c67;
+
+  --accent: #e3ad4f;            /* brass */
+  --accent-ink: #120d03;
+  --accent-soft: rgba(227, 173, 79, .12);
+  --accent-fill: rgba(227, 173, 79, .16);
+  --accent-line: rgba(227, 173, 79, .38);
+
+  --pos: #3fbf83;  --pos-soft: rgba(63, 191, 131, .12);
+  --neg: #e5575b;  --neg-soft: rgba(229, 87, 91, .12);
+  --warn: #e0a03a; --warn-soft: rgba(224, 160, 58, .13);
+  --info: #6f8cff; --info-soft: rgba(111, 140, 255, .13);
+
+  --shadow-1: 0 1px 0 rgba(255,255,255,.03) inset;
+  --shadow-pop: 0 18px 50px -12px rgba(0,0,0,.65), 0 0 0 1px var(--line-strong);
+  --ring: 0 0 0 2px var(--bg-0), 0 0 0 4px var(--accent-line);
+
+  --r-1: 4px; --r-2: 6px; --r-3: 8px; --r-4: 12px;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-7: 32px; --s-8: 40px;
+  --sidebar-w: 236px; --sidebar-w-collapsed: 64px; --topbar-h: 56px;
+
+  /* motion */
+  --ease: cubic-bezier(.2, .7, .15, 1);
+  --ease-in: cubic-bezier(.5, 0, .75, 0);
+  --d-1: 120ms; --d-2: 200ms; --d-3: 320ms; --d-4: 560ms;
+
+  color-scheme: dark;
+}
+
+/* accent variants */
+:root[data-accent="green"]  { --accent: #3fbf83; --accent-ink: #03120a; --accent-soft: rgba(63,191,131,.12); --accent-fill: rgba(63,191,131,.15); --accent-line: rgba(63,191,131,.4); }
+:root[data-accent="blue"]   { --accent: #7b96ff; --accent-ink: #050a1c; --accent-soft: rgba(123,150,255,.13); --accent-fill: rgba(123,150,255,.16); --accent-line: rgba(123,150,255,.42); }
+:root[data-accent="violet"] { --accent: #a48bf2; --accent-ink: #0d0720; --accent-soft: rgba(164,139,242,.13); --accent-fill: rgba(164,139,242,.16); --accent-line: rgba(164,139,242,.42); }
+
+/* light theme */
+:root[data-theme-effective="light"] {
+  --bg-0: #f3f3f1; --bg-1: #fafaf8; --bg-2: #ffffff; --bg-3: #f0f0ed; --bg-4: #e7e7e3;
+  --line: #e3e3de; --line-strong: #d1d1cb; --grid: #ececE8;
+  --text-1: #15171b; --text-2: #3d424a; --text-3: #6b717b; --text-4: #9aa0a8;
+  --accent: #b47a12; --accent-ink: #ffffff; --accent-soft: rgba(180,122,18,.1); --accent-fill: rgba(180,122,18,.12); --accent-line: rgba(180,122,18,.35);
+  --pos: #18915a; --pos-soft: rgba(24,145,90,.1); --neg: #cc3337; --neg-soft: rgba(204,51,55,.09);
+  --warn: #b0700a; --warn-soft: rgba(176,112,10,.1); --info: #3d5fd6; --info-soft: rgba(61,95,214,.09);
+  --shadow-pop: 0 18px 50px -14px rgba(20,20,30,.25), 0 0 0 1px var(--line-strong);
+  --ring: 0 0 0 2px var(--bg-0), 0 0 0 4px var(--accent-line);
+  color-scheme: light;
+}
+:root[data-theme-effective="light"][data-accent="green"]  { --accent: #18915a; --accent-ink: #fff; }
+:root[data-theme-effective="light"][data-accent="blue"]   { --accent: #3d5fd6; --accent-ink: #fff; }
+:root[data-theme-effective="light"][data-accent="violet"] { --accent: #6d4fd1; --accent-ink: #fff; }
+
+/* density */
+:root[data-density="compact"] { --s-4: 12px; --s-5: 16px; --s-6: 20px; }
+
+/* ==========================================================================
+   Motion system — html[data-motion-effective] is set by JS from the user's
+   setting (auto | full | reduced | none). "auto" follows prefers-reduced-motion.
+   Animations are opt-in under "full" only; "reduced" keeps short fades;
+   "none" removes all motion. Content never depends on an animation finishing.
+   ========================================================================== */
+:root[data-motion-effective="reduced"] { --d-1: 1ms; --d-2: 90ms; --d-3: 120ms; --d-4: 150ms; }
+:root[data-motion-effective="none"] *,
+:root[data-motion-effective="none"] *::before,
+:root[data-motion-effective="none"] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

@@ -2,7 +2,7 @@
   "format": "bourse-hardware",
   "kind": "feed",
   "version": 1,
-  "updatedAt": "2026-11-19T23:15:00+01:00",
+  "updatedAt": "2026-11-19T23:30:00+01:00",
   "about": "Prix neufs relevés à la main sur des pages publiques (comparateurs et boutiques), avec lien et date. Aucun prix n'est estimé ici. status 'unverified' = lu sur un comparateur, à confirmer chez le marchand avant d'acheter. 'ts' = date du relevé indiquée par la page, sinon date de lecture.",
   "observations": [
     { "id": "feed-20261119-rx9060xt", "productId": "rx9060xt", "price": 669.99, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://labonneconfig.fr/cartes-graphiques/rx-9060-xt", "ts": "2026-11-19T16:00:00+01:00", "method": "feed", "status": "unverified", "note": "ASUS DUAL RX 9060 XT 16 Go, hors livraison (LaBonneConfig)" },
@@ -18,6 +18,11 @@
     { "id": "feed-20261119-aio240", "productId": "aio240", "price": 43.92, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://ledenicheur.fr/s/aio-240/", "ts": "2026-11-19T23:00:00+01:00", "method": "feed", "status": "unverified", "note": "Thermalright Frozen Infinity 240, AM4/AM5 ; date de lecture (Ledenicheur)" },
     { "id": "feed-20261110-aio240", "productId": "aio240", "price": 59.99, "currency": "EUR", "retailer": "TopAchat", "sourceUrl": "https://www.topachat.com/p/top/meilleur-watercooling-aio-2026", "ts": "2026-11-10T12:00:00+01:00", "method": "feed", "status": "unverified", "note": "TopAchat, Cooler Master MasterLiquid Core Nex 240 ARGB, AM4" },
 
-    { "id": "feed-20261119-o11mini", "productId": "o11mini", "price": 74.95, "currency": "EUR", "retailer": "materiel", "sourceUrl": "https://ledenicheur.fr/product.php?p=5668959", "ts": "2026-11-19T23:00:00+01:00", "method": "feed", "status": "unverified", "note": "Version Snow, en stock ; date de lecture (Ledenicheur)" }
+    { "id": "feed-20261119-o11mini", "productId": "o11mini", "price": 74.95, "currency": "EUR", "retailer": "materiel", "sourceUrl": "https://ledenicheur.fr/product.php?p=5668959", "ts": "2026-11-19T23:00:00+01:00", "method": "feed", "status": "unverified", "note": "Version Snow, en stock ; date de lecture (Ledenicheur)" },
+
+    { "id": "feed-20261119-ddr4_32", "productId": "ddr4_32", "price": 244.99, "currency": "EUR", "retailer": "Rue du Commerce", "sourceUrl": "https://ledenicheur.fr/product.php?p=5316816", "ts": "2026-11-19T23:25:00+01:00", "method": "feed", "status": "unverified", "note": "Corsair Vengeance LPX DDR4 3600 2×16 Go CL18 (CMK32GX4M2Z3600C18), Rue du Commerce Marketplace, en stock ; date de lecture (Ledenicheur)" },
+    { "id": "feed-20261119-ddr5_32", "productId": "ddr5_32", "price": 609.98, "currency": "EUR", "retailer": "TopAchat", "sourceUrl": "https://www.topachat.com/pages/detail2_cat_est_micro_puis_rubrique_est_wme_ddr5_puis_ref_est_in20032009.html", "ts": "2026-11-19T23:25:00+01:00", "method": "feed", "status": "unverified", "note": "Textorm DDR5 6000 2×16 Go CL36, en stock ; date de lecture (TopAchat)" },
+    { "id": "feed-20261119-psu750", "productId": "psu750", "price": 89.99, "currency": "EUR", "retailer": "amazon", "sourceUrl": "https://ledenicheur.fr/product.php?p=16426047", "ts": "2026-11-19T23:25:00+01:00", "method": "feed", "status": "unverified", "note": "GameMax GS 750G Blanc, SFX 750 W 80+ Gold modulaire, vendeur tiers Amazon.fr Marketplace, en stock ; Galaxus 129 € ; date de lecture (Ledenicheur)" },
+    { "id": "feed-20261119-b450gpm", "productId": "b450gpm", "price": 242.27, "currency": "EUR", "retailer": "Fnac", "sourceUrl": "https://ledenicheur.fr/product.php?p=5164489", "ts": "2026-11-19T23:25:00+01:00", "method": "feed", "status": "unverified", "note": "MSI B450 Gaming Plus MAX, Fnac Marketplace (vendeur tiers), en stock ; épuisée chez Materiel.net et TopAchat ; date de lecture (Ledenicheur)" }
   ]
 }
